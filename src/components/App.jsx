@@ -1,16 +1,68 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { lazy, useEffect } from 'react';
+import { currentUserThunk } from 'redux/auth/thunks';
+import PrivateRoute from './form/PrivateRoute';
+import PublicRoute from './form/PublickRoute';
+import Layout from './form/Layout';
+import authSelectors from 'redux/auth/selectors';
+
+const Home = lazy(() => import('./form/pages/Home/Home.jsx'));
+const Contacts = lazy(() => import('./form/pages/Contacts/Contacts.jsx'));
+const SignUp = lazy(() => import('./form/pages/SignUp/SignUp.jsx'));
+const LogIn = lazy(() => import('./form/pages/LogIn/LogIn.jsx'));
+
+export default function App() {
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(
+    authSelectors.getFetchingCurrentUser
   );
-};
+
+  useEffect(() => {
+    dispatch(currentUserThunk());
+  }, [dispatch]);
+
+  return (
+    !isFetchingCurrentUser && (
+      <>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute>
+                  <Contacts />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute>
+                  <SignUp />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute>
+                  <LogIn />
+                </PublicRoute>
+              }
+            />
+          </Route>
+        </Routes>
+        <ToastContainer
+          autoClose={2500}
+          position="top-center"
+          theme="colored"
+          closeOnClick
+        />
+      </>
+    )
+  );
+}
