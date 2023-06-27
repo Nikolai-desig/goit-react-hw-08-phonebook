@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className={css.header}>
       <nav className={css.navigation}>
-        <NavLink to="/" className={css.link}>
+        <NavLink to="/" className={`${css.link} ${css.linkHome}`}>
           Home
         </NavLink>
         {isLoggedIn && (

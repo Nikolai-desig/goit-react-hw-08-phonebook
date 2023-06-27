@@ -9,10 +9,10 @@ import PublicRoute from './form/PublickRoute';
 import Layout from './form/Layout';
 import authSelectors from 'redux/auth/selectors';
 
-const Home = lazy(() => import('./form/pages/Home/Home.jsx'));
-const Contacts = lazy(() => import('./form/pages/Contacts/Contacts.jsx'));
-const SignUp = lazy(() => import('./form/pages/SignUp/SignUp.jsx'));
-const LogIn = lazy(() => import('./form/pages/LogIn/LogIn.jsx'));
+const Home = lazy(() => import('../pages/Contacts/Home/Home.jsx'));
+const Contacts = lazy(() => import('../pages/Contacts/Contacts.jsx'));
+const SignUp = lazy(() => import('../pages/Contacts/SignUp/SignUp.jsx'));
+const LogIn = lazy(() => import('../pages/Contacts/LogIn/LogIn.jsx'));
 
 export default function App() {
   const dispatch = useDispatch();
