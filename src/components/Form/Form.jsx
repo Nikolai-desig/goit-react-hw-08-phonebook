@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from '@mui/material';
 
-function Phonebook() {
+function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const contacts = useSelector(state => state.contacts.items);
@@ -87,8 +87,8 @@ function Phonebook() {
   );
 }
 
-Phonebook.propTypes = {
+ContactForm.propTypes = {
   onSubmit: PropTypes.func,
 };
 
-export default Phonebook;
+export default ContactForm;

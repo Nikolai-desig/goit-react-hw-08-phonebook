@@ -4,15 +4,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { lazy, useEffect } from 'react';
 import { currentUserThunk } from 'redux/auth/thunks';
-import PrivateRoute from './form/PrivateRoute';
-import PublicRoute from './form/PublickRoute';
-import Layout from './form/Layout';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublickRoute';
+import Layout from './Layout/Layout';
 import authSelectors from 'redux/auth/selectors';
 
-const Home = lazy(() => import('../pages/Contacts/Home/Home.jsx'));
-const Contacts = lazy(() => import('../pages/Contacts/Contacts.jsx'));
-const SignUp = lazy(() => import('../pages/Contacts/SignUp/SignUp.jsx'));
-const LogIn = lazy(() => import('../pages/Contacts/LogIn/LogIn.jsx'));
+const Home = lazy(() => import('../pages/Home/Home'));
+const Contacts = lazy(() => import('../pages/Contacts/Contacts'));
+const SignUp = lazy(() => import('../pages/SignUp/SignUp'));
+const LogIn = lazy(() => import('../pages/LogIn/LogIn'));
 
 export default function App() {
   const dispatch = useDispatch();
